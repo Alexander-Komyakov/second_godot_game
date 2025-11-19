@@ -1,21 +1,108 @@
-[gd_scene load_steps=3 format=3 uid="uid://da543gsbqfjty"]
+[gd_scene load_steps=15 format=3 uid="uid://da543gsbqfjty"]
 
 [ext_resource type="Texture2D" uid="uid://df34s8bqfjaj7" path="res://images/player/player1.png" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://cye6iwly7q5i0" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="Animation" uid="uid://ca886ipngo0gk" path="res://RUN.res" id="3_hqtel"]
+[ext_resource type="Animation" uid="uid://b328o51cwmcbr" path="res://IDLE.res" id="4_sweqy"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_onrkg"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_4flbx")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
+radius = 17.0
+height = 44.0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_onrkg"]
+animation = &"IDLE"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i3pqv"]
+animation = &"RUN"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hqtel"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2hs0m"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sweqy"]
+advance_mode = 2
+advance_condition = &"run"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_onrkg"]
+reset_ends = true
+states/IDLE/node = SubResource("AnimationNodeAnimation_onrkg")
+states/IDLE/position = Vector2(491, 100)
+states/RUN/node = SubResource("AnimationNodeAnimation_i3pqv")
+states/RUN/position = Vector2(491, 198)
+states/Start/position = Vector2(315, 100)
+transitions = ["Start", "IDLE", SubResource("AnimationNodeStateMachineTransition_hqtel"), "RUN", "IDLE", SubResource("AnimationNodeStateMachineTransition_2hs0m"), "IDLE", "RUN", SubResource("AnimationNodeStateMachineTransition_sweqy")]
+graph_offset = Vector2(-35.670753, 0)
+
+[sub_resource type="Animation" id="Animation_i3pqv"]
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../AnimatedSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../AnimatedSprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, 3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hqtel"]
+_data = {
+&"IDLE": ExtResource("4_sweqy"),
+&"RESET": SubResource("Animation_i3pqv"),
+&"RUN": ExtResource("3_hqtel")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hqtel"]
+radius = 39.0
 
 [node name="player" type="CharacterBody2D"]
+script = ExtResource("1_onrkg")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="Sprite2D" parent="."]
 position = Vector2(1.0000153, 0)
 scale = Vector2(3, 3)
-sprite_frames = SubResource("SpriteFrames_onrkg")
+texture = ExtResource("1_4flbx")
+offset = Vector2(-1.333318, -15.333334)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -20)
+shape = SubResource("CapsuleShape2D_onrkg")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+reset_on_save = false
+root_node = NodePath(".")
+tree_root = SubResource("AnimationNodeStateMachine_onrkg")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/idle = false
+parameters/conditions/run = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AnimationTree")
+libraries = {
+&"": SubResource("AnimationLibrary_hqtel")
+}
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(1, -28)
+shape = SubResource("CircleShape2D_hqtel")

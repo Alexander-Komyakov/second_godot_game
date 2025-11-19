@@ -1,0 +1,69 @@
+[gd_scene load_steps=12 format=3 uid="uid://dyawh8dsfsa8v"]
+
+[ext_resource type="Texture2D" uid="uid://xit8ramlwesf" path="res://images/cabbage.png" id="1_klemo"]
+[ext_resource type="Script" uid="uid://c6kj5h0o1dggy" path="res://vegetables.gd" id="1_t0oa8"]
+[ext_resource type="Texture2D" uid="uid://bgw6qw6rxl3xw" path="res://images/eggplant.png" id="2_t0oa8"]
+[ext_resource type="Texture2D" uid="uid://ci56qsilyvpb6" path="res://images/watermelon.png" id="3_wqf8x"]
+[ext_resource type="Texture2D" uid="uid://dbditcaf7sulr" path="res://images/seed/seed1.png" id="4_ifxsr"]
+[ext_resource type="Texture2D" uid="uid://dt4itjfie0b62" path="res://images/seed/seed2.png" id="5_tbu84"]
+[ext_resource type="Texture2D" uid="uid://uh8dpnbu2m6g" path="res://images/seed/seed3.png" id="6_tdjes"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gwqsl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_klemo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_t0oa8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wqf8x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_musj6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_tbu84")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ifxsr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_tdjes")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nikjr"]
+radius = 16.124516
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yk16x"]
+radius = 32.01562
+
+[node name="vegetables" type="Area2D"]
+script = ExtResource("1_t0oa8")
+
+[node name="spriteVegetables" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_gwqsl")
+
+[node name="spriteSeed" type="AnimatedSprite2D" parent="."]
+visible = false
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_musj6")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+physics_interpolation_mode = 2
+shape = SubResource("CircleShape2D_nikjr")
+
+[node name="CollisionShapeGet" type="CollisionShape2D" parent="."]
+physics_interpolation_mode = 2
+shape = SubResource("CircleShape2D_yk16x")

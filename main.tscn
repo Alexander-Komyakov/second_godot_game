@@ -1,8 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://bpmsv2n7cu3j7"]
+[gd_scene load_steps=4 format=3 uid="uid://bpmsv2n7cu3j7"]
 
 [ext_resource type="PackedScene" uid="uid://da543gsbqfjty" path="res://player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://bktiec4dtgjpd" path="res://interface.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://d1c8otn5tqhvq" path="res://gardenBed.tscn" id="3_h2yge"]
 
 [node name="main" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(184, 73)
+position = Vector2(213, 139)
+
+[node name="interface" parent="." instance=ExtResource("2_0xm2m")]
+
+[node name="gardenBed1" parent="." instance=ExtResource("3_h2yge")]
+position = Vector2(753, 119)
+
+[node name="gardenBed2" parent="." instance=ExtResource("3_h2yge")]
+position = Vector2(820, 118)
+
+[node name="gardenBed3" parent="." instance=ExtResource("3_h2yge")]
+position = Vector2(753, 191)
+
+[node name="gardenBed4" parent="." instance=ExtResource("3_h2yge")]
+position = Vector2(821, 191)
+
+[node name="gardenBed5" parent="." instance=ExtResource("3_h2yge")]
+position = Vector2(754, 265)
+
+[node name="gardenBed6" parent="." instance=ExtResource("3_h2yge")]
+position = Vector2(822, 265)

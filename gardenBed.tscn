@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1c8otn5tqhvq"]
+
+[ext_resource type="Script" uid="uid://bvjrg1yvgtidf" path="res://gardenBed.gd" id="1_b0fks"]
+[ext_resource type="Texture2D" uid="uid://cghmd5g87pgxi" path="res://images/gardenBed.png" id="1_clguk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b0fks"]
+radius = 37.01351
+
+[node name="gardenBed" type="Area2D"]
+z_index = -1
+script = ExtResource("1_b0fks")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_clguk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_b0fks")

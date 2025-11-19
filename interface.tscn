@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://bktiec4dtgjpd"]
+
+[ext_resource type="Script" uid="uid://brdpsm3o1rsmj" path="res://interface.gd" id="1_jllm8"]
+[ext_resource type="Texture2D" uid="uid://of3ai7kxtwd1" path="res://images/money.png" id="1_oi7g3"]
+[ext_resource type="Texture2D" uid="uid://xit8ramlwesf" path="res://images/cabbage.png" id="2_4rbkc"]
+[ext_resource type="Texture2D" uid="uid://dt4itjfie0b62" path="res://images/seed/seed2.png" id="3_4rbkc"]
+[ext_resource type="Texture2D" uid="uid://dbditcaf7sulr" path="res://images/seed/seed1.png" id="3_pt1ru"]
+[ext_resource type="Texture2D" uid="uid://uh8dpnbu2m6g" path="res://images/seed/seed3.png" id="4_pt1ru"]
+[ext_resource type="Texture2D" uid="uid://bgw6qw6rxl3xw" path="res://images/eggplant.png" id="5_pxv5b"]
+[ext_resource type="Texture2D" uid="uid://ci56qsilyvpb6" path="res://images/watermelon.png" id="6_jllm8"]
+
+[node name="interface" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_jllm8")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 312.0
+offset_top = 178.0
+offset_right = 352.0
+offset_bottom = 218.0
+
+[node name="rightPanel" type="ItemList" parent="."]
+layout_mode = 0
+offset_left = 1237.0
+offset_top = 118.0
+offset_right = 1281.0
+offset_bottom = 338.0
+scale = Vector2(2, 2)
+allow_search = false
+auto_width = true
+auto_height = true
+item_count = 4
+same_column_width = true
+icon_mode = 0
+item_0/text = "0"
+item_0/icon = ExtResource("1_oi7g3")
+item_1/text = "0"
+item_1/icon = ExtResource("3_pt1ru")
+item_2/text = "0"
+item_2/icon = ExtResource("4_pt1ru")
+item_3/text = "0"
+item_3/icon = ExtResource("3_4rbkc")
+
+[node name="downPanel" type="ItemList" parent="."]
+layout_mode = 0
+offset_left = 515.0
+offset_top = 656.0
+offset_right = 673.0
+offset_bottom = 700.0
+scale = Vector2(2, 2)
+allow_search = false
+auto_width = true
+auto_height = true
+item_count = 3
+max_columns = 3
+same_column_width = true
+item_0/text = "0"
+item_0/icon = ExtResource("5_pxv5b")
+item_1/text = "0"
+item_1/icon = ExtResource("6_jllm8")
+item_2/text = "0"
+item_2/icon = ExtResource("2_4rbkc")
+
+[connection signal="item_selected" from="rightPanel" to="." method="_on_right_panel_item_selected"]
+[connection signal="item_selected" from="downPanel" to="." method="_on_down_panel_item_selected"]
