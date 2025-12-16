@@ -75,9 +75,13 @@ _data = {
 radius = 39.0
 
 [node name="player" type="CharacterBody2D"]
+z_as_relative = false
+y_sort_enabled = true
 script = ExtResource("1_onrkg")
 
 [node name="AnimatedSprite2D" type="Sprite2D" parent="."]
+z_as_relative = false
+y_sort_enabled = true
 position = Vector2(1.0000153, 0)
 scale = Vector2(3, 3)
 texture = ExtResource("1_4flbx")

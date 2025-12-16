@@ -10,6 +10,11 @@ var objects: Dictionary[String, int] = {
     "seed_watermelon": 0,
     "seed_cabbage": 0
 }
+var objects_price: Dictionary[String, int] = {
+    "eggplant": 2,
+    "watermelon": 3,
+    "cabbage": 4,
+}
 
 var name_to_id: Dictionary[String, int] = {
     "eggplant": 0,

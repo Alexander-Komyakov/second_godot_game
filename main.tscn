@@ -1,30 +1,162 @@
-[gd_scene load_steps=4 format=3 uid="uid://bpmsv2n7cu3j7"]
+[gd_scene load_steps=21 format=4 uid="uid://bpmsv2n7cu3j7"]
 
 [ext_resource type="PackedScene" uid="uid://da543gsbqfjty" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bktiec4dtgjpd" path="res://interface.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://d1c8otn5tqhvq" path="res://gardenBed.tscn" id="3_h2yge"]
+[ext_resource type="Texture2D" uid="uid://858vad7pds6s" path="res://images/fence/fence1.png" id="4_lquwl"]
+[ext_resource type="Texture2D" uid="uid://c5kw05yn537tb" path="res://images/fence/fence2.png" id="5_7mycd"]
+[ext_resource type="PackedScene" uid="uid://bdbt3u1umqy4v" path="res://carpet.tscn" id="6_7mycd"]
+[ext_resource type="Texture2D" uid="uid://4s0h7gpcrc7" path="res://images/pointer.png" id="7_272bh"]
+[ext_resource type="Script" uid="uid://cqem7hy2viouj" path="res://forward.gd" id="8_kek77"]
+[ext_resource type="Texture2D" uid="uid://cj1085xrdgd7d" path="res://images/pointer-right.png" id="9_4c57u"]
+[ext_resource type="Texture2D" uid="uid://bgw6qw6rxl3xw" path="res://images/eggplant.png" id="10_dg77c"]
+[ext_resource type="Texture2D" uid="uid://ci56qsilyvpb6" path="res://images/watermelon.png" id="11_ycdy4"]
+[ext_resource type="Texture2D" uid="uid://xit8ramlwesf" path="res://images/cabbage.png" id="12_w48qg"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_272bh"]
+texture = ExtResource("4_lquwl")
+texture_region_size = Vector2i(30, 96)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -1)
+0:0/0/y_sort_origin = 32
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(15, 48, -15, 48, -15, 9.240292, 15, 8.921658)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5vw27"]
+texture = ExtResource("5_7mycd")
+texture_region_size = Vector2i(30, 96)
+0:0/0 = 0
+0:0/0/y_sort_origin = 32
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4.676323, -15.827568, 4.6763306, -16.007427, 4.856186, 15.82757, -4.676323, 16.187284)
+
+[sub_resource type="TileSet" id="TileSet_kek77"]
+tile_size = Vector2i(30, 30)
+physics_layer_0/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_272bh")
+sources/2 = SubResource("TileSetAtlasSource_5vw27")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kek77"]
+size = Vector2(300, 443)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_efxa6"]
+size = Vector2(182, 129)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vivmo"]
+radius = 46.043457
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2cqfq"]
+radius = 50.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yaehf"]
+radius = 49.497475
 
 [node name="main" type="Node2D"]
+z_as_relative = false
+y_sort_enabled = true
 
 [node name="player" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(213, 139)
-
-[node name="interface" parent="." instance=ExtResource("2_0xm2m")]
+position = Vector2(546, 519)
 
 [node name="gardenBed1" parent="." instance=ExtResource("3_h2yge")]
-position = Vector2(753, 119)
+position = Vector2(865, 199)
 
 [node name="gardenBed2" parent="." instance=ExtResource("3_h2yge")]
-position = Vector2(820, 118)
+position = Vector2(932, 198)
 
 [node name="gardenBed3" parent="." instance=ExtResource("3_h2yge")]
-position = Vector2(753, 191)
+position = Vector2(865, 271)
 
 [node name="gardenBed4" parent="." instance=ExtResource("3_h2yge")]
-position = Vector2(821, 191)
+position = Vector2(933, 271)
 
 [node name="gardenBed5" parent="." instance=ExtResource("3_h2yge")]
-position = Vector2(754, 265)
+position = Vector2(866, 345)
 
 [node name="gardenBed6" parent="." instance=ExtResource("3_h2yge")]
-position = Vector2(822, 265)
+position = Vector2(934, 345)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(683, 384)
+
+[node name="interface" parent="Camera2D" instance=ExtResource("2_0xm2m")]
+offset_left = -681.0
+offset_top = -383.0
+offset_right = -681.0
+offset_bottom = -383.0
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(0, 13)
+tile_map_data = PackedByteArray("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")
+tile_set = SubResource("TileSet_kek77")
+
+[node name="carpet" parent="." instance=ExtResource("6_7mycd")]
+z_index = -1
+position = Vector2(-602, 399)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="carpet"]
+position = Vector2(1, 0.5)
+shape = SubResource("RectangleShape2D_kek77")
+
+[node name="pointerStore" type="Sprite2D" parent="."]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(87, 214)
+scale = Vector2(2, 2)
+texture = ExtResource("7_272bh")
+offset = Vector2(-1, -14)
+
+[node name="forward" type="Area2D" parent="."]
+script = ExtResource("8_kek77")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="forward"]
+position = Vector2(5, 232.5)
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="pointerFarm" type="Sprite2D" parent="."]
+position = Vector2(-72, 189)
+scale = Vector2(2, 2)
+texture = ExtResource("9_4c57u")
+
+[node name="buyEggplang" type="Area2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="buyEggplang"]
+position = Vector2(-1088, 447)
+scale = Vector2(2, 2)
+texture = ExtResource("10_dg77c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="buyEggplang"]
+position = Vector2(-1090, 452)
+shape = SubResource("CircleShape2D_vivmo")
+
+[node name="buyWatermelon" type="Area2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="buyWatermelon"]
+position = Vector2(-1230, 449)
+scale = Vector2(2, 2)
+texture = ExtResource("11_ycdy4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="buyWatermelon"]
+position = Vector2(-1231, 453)
+shape = SubResource("CircleShape2D_2cqfq")
+
+[node name="buyCabbage" type="Area2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="buyCabbage"]
+position = Vector2(-958, 451)
+scale = Vector2(2, 2)
+texture = ExtResource("12_w48qg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="buyCabbage"]
+position = Vector2(-960, 451)
+shape = SubResource("CircleShape2D_yaehf")
+
+[connection signal="body_entered" from="carpet" to="player" method="_on_carpet_body_entered"]
+[connection signal="body_exited" from="carpet" to="player" method="_on_carpet_body_exited"]
+[connection signal="body_entered" from="forward" to="forward" method="_on_body_entered"]
+[connection signal="body_entered" from="buyEggplang" to="player" method="_on_buy_eggplang_body_entered"]
+[connection signal="body_exited" from="buyEggplang" to="player" method="_on_buy_eggplang_body_exited"]
+[connection signal="body_entered" from="buyWatermelon" to="player" method="_on_buy_watermelon_body_entered"]
+[connection signal="body_exited" from="buyWatermelon" to="player" method="_on_buy_watermelon_body_exited"]
+[connection signal="body_entered" from="buyCabbage" to="player" method="_on_buy_cabbage_body_entered"]
+[connection signal="body_exited" from="buyCabbage" to="player" method="_on_buy_cabbage_body_exited"]

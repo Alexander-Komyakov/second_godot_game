@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdbt3u1umqy4v"]
+
+[ext_resource type="Texture2D" uid="uid://piovhakx1ts1" path="res://images/carpet.jpg" id="1_sk5gk"]
+
+[node name="carpet" type="Area2D"]
+
+[node name="carpetSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_sk5gk")
